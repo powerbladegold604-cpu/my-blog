@@ -6,6 +6,7 @@ interface Props {
   description?: string;
 }
 const { title, description = '随笔、笔记与折腾记录。' } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -22,10 +23,10 @@ const year = new Date().getFullYear();
   <body>
     <header class="site">
       <div class="wrap">
-        <a class="brand" href="/">我的博客</a>
+        <a class="brand" href={base + '/'}>我的博客</a>
         <nav>
-          <a href="/">首页</a>
-          <a href="/about/">关于</a>
+          <a href={base + '/'}>首页</a>
+          <a href={base + '/about/'}>关于</a>
         </nav>
       </div>
     </header>
