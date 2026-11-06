@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d: Date) =>
+  d.toISOString().slice(0, 10);
+---
+<Base title="我的博客">
+  <section class="hero">
+    <h1>随便写点什么</h1>
+    <p>一个用 Astro 搭建的静态博客。没有服务器，没有数据库，没有后台——写 Markdown，推送，站点就更新了。</p>
+  </section>
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a class="post-item" href={`/posts/${post.id}/`}>
+          <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+          <h2>{post.data.title}</h2>
+          {post.data.summary && <p>{post.data.summary}</p>}
+          {post.data.tags.length > 0 && (
+            <div class="tags">
+              {post.data.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          )}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  {posts.length === 0 && <p style="color:var(--fg-muted)">还没有文章。去 <code>src/content/posts/</code> 里新建一个 .md 文件吧。</p>}
+</Base>

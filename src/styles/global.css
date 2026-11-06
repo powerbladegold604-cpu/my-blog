@@ -1,0 +1,103 @@
+/* ── 设计令牌 ───────────────────────────── */
+:root {
+  --bg: #fbfaf7;
+  --bg-soft: #f3f1ec;
+  --fg: #1f1d1a;
+  --fg-muted: #6b665e;
+  --accent: #b4532a;
+  --accent-soft: #f4e5dc;
+  --border: #e3ded4;
+  --radius: 10px;
+  --maxw: 46rem;
+  --font: "Georgia", "Source Han Serif SC", "Noto Serif SC", serif;
+  --mono: ui-monospace, "Cascadia Code", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171614;
+    --bg-soft: #201e1b;
+    --fg: #e8e4dc;
+    --fg-muted: #9c968c;
+    --accent: #e08a5f;
+    --accent-soft: #2a2320;
+    --border: #322e29;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 布局 ───────────────────────────────── */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+header.site {
+  border-bottom: 1px solid var(--border);
+  padding: 1.75rem 0;
+}
+header.site .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+header.site .brand { font-size: 1.15rem; font-weight: 600; letter-spacing: .02em; color: var(--fg); text-decoration: none; }
+header.site nav { display: flex; gap: 1.1rem; font-size: .92rem; }
+header.site nav a { color: var(--fg-muted); text-decoration: none; }
+header.site nav a:hover { color: var(--accent); }
+
+main { padding: 3rem 0 5rem; }
+
+footer.site {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0 3rem;
+  color: var(--fg-muted);
+  font-size: .86rem;
+}
+footer.site .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+/* ── 首页 ───────────────────────────────── */
+.hero { margin-bottom: 3.5rem; }
+.hero h1 { font-size: 2.4rem; line-height: 1.25; margin: 0 0 .8rem; letter-spacing: -.01em; }
+.hero p { color: var(--fg-muted); font-size: 1.02rem; margin: 0; max-width: 34rem; }
+
+.post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.25rem; }
+.post-item { display: block; text-decoration: none; color: inherit; padding-bottom: 2.25rem; border-bottom: 1px solid var(--border); }
+.post-item:last-child { border-bottom: 0; }
+.post-item time { font-size: .82rem; color: var(--fg-muted); font-family: var(--mono); }
+.post-item h2 { font-size: 1.32rem; margin: .45rem 0 .5rem; line-height: 1.4; }
+.post-item p { margin: 0; color: var(--fg-muted); font-size: .96rem; }
+.post-item:hover h2 { color: var(--accent); }
+.tags { display: flex; gap: .45rem; flex-wrap: wrap; margin-top: .8rem; }
+.tag { font-size: .74rem; padding: .15rem .5rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); }
+
+/* ── 文章页 ─────────────────────────────── */
+article header { margin-bottom: 2.5rem; }
+article header h1 { font-size: 2rem; line-height: 1.32; margin: .5rem 0 .9rem; letter-spacing: -.01em; }
+article header .meta { color: var(--fg-muted); font-size: .86rem; font-family: var(--mono); }
+article .content h2 { font-size: 1.4rem; margin: 2.6rem 0 .9rem; }
+article .content h3 { font-size: 1.12rem; margin: 2rem 0 .7rem; }
+article .content p { margin: 1.1rem 0; }
+article .content a { color: var(--accent); }
+article .content ul, article .content ol { padding-left: 1.4rem; }
+article .content li { margin: .4rem 0; }
+article .content blockquote {
+  margin: 1.6rem 0; padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent); color: var(--fg-muted);
+}
+article .content code {
+  font-family: var(--mono); font-size: .88em;
+  background: var(--bg-soft); padding: .1rem .35rem; border-radius: 4px;
+}
+article .content pre { background: var(--bg-soft); padding: 1.1rem 1.2rem; border-radius: var(--radius); overflow-x: auto; border: 1px solid var(--border); }
+article .content pre code { background: none; padding: 0; font-size: .86rem; }
+article .content hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+article .content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .92rem; }
+article .content th, article .content td { border: 1px solid var(--border); padding: .5rem .7rem; text-align: left; }
+article .content th { background: var(--bg-soft); }
+
+.back { display: inline-block; margin-top: 3.5rem; font-size: .9rem; color: var(--fg-muted); text-decoration: none; }
+.back:hover { color: var(--accent); }
